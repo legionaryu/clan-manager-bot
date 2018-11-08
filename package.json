@@ -1,0 +1,17 @@
+{
+  "name": "clan-manager-bot",
+  "version": "0.0.1",
+  "description": "Discord bot that helps you to manage your Clash Royale clan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/uws": "^11.149.1",
+    "discord.js": "^11.4.2",
+    "erlpack": "github:discordapp/erlpack",
+    "zlib-sync": "^0.1.4"
+  }
+}
