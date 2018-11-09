@@ -1,3 +1,4 @@
+import RoyaleWrapper from "./royale-wrapper";
 import * as Discord from "discord.js";
 import * as Winston from "winston";
 import * as PouchDB from "pouchdb";
@@ -27,6 +28,7 @@ const logger = Winston.createLogger({
 });
 
 const client = new Discord.Client();
+const royaleWrapper = new RoyaleWrapper(Auth.default.royaleToken);
 
 logger.info("Starting bot server...");
 
@@ -48,8 +50,7 @@ client.on("message", msg => {
       if (msg.content.indexOf("ping") > -1) {
         logger.info("Message:", msg.cleanContent);
         msg.reply("Pong!");
-      }
-      else {
+      } else {
         msg.reply("tenta me mandar um 'ping'");
       }
       break;
@@ -57,4 +58,16 @@ client.on("message", msg => {
   }
 });
 
-client.login(Auth.default.token);
+client
+  .login(Auth.default.token)
+  .then(response => {
+    logger.info("Logged into these channels: " + client.channels);
+    for (const [id, channel] of client.channels) {
+      if (id === "441596084033421323") {
+        (channel as Discord.TextChannel).send("Estou aqui!");
+      }
+    }
+  })
+  .catch(error => {
+    logger.error(error);
+  });

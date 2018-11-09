@@ -21,8 +21,10 @@
   },
   "dependencies": {
     "@discordjs/uws": "^11.149.1",
+    "@types/got": "^9.2.0",
     "discord.js": "^11.4.2",
     "erlpack": "github:discordapp/erlpack",
+    "got": "^9.3.2",
     "pouchdb": "^7.0.0",
     "winston": "^3.1.0",
     "zlib-sync": "^0.1.4"

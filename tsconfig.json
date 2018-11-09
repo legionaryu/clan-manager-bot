@@ -1,4 +1,5 @@
 {
+    "fast": "never",
     "compilerOptions": {
         "module": "commonjs",
         "esModuleInterop": true,

@@ -7,6 +7,18 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Launch Royale",
+            "program": "${workspaceFolder}\\dist\\royale-wrapper.js",
+            "preLaunchTask": "npm: build-ts",
+            "outFiles": [
+                "${workspaceFolder}/dist/**/*.js"
+            ],
+            // "console": "integratedTerminal",
+            "outputCapture": "std"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}\\dist\\index.js",
             "preLaunchTask": "npm: build-ts",

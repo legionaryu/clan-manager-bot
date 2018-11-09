@@ -1,4 +1,7 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -7,6 +10,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const royale_wrapper_1 = __importDefault(require("./royale-wrapper"));
 const Discord = __importStar(require("discord.js"));
 const Winston = __importStar(require("winston"));
 const Auth = __importStar(require("../token.json"));
@@ -27,6 +31,7 @@ const logger = Winston.createLogger({
     ]
 });
 const client = new Discord.Client();
+const royaleWrapper = new royale_wrapper_1.default(Auth.default.royaleToken);
 logger.info("Starting bot server...");
 client.once("ready", () => {
     logger.info("Ready!");
@@ -46,11 +51,23 @@ client.on("message", msg => {
                 msg.reply("Pong!");
             }
             else {
-                msg.reply("Tenta me mandar um 'ping'");
+                msg.reply("tenta me mandar um 'ping'");
             }
             break;
         }
     }
 });
-client.login(Auth.default.token);
+client
+    .login(Auth.default.token)
+    .then(response => {
+    logger.info("Logged into these channels: " + client.channels);
+    for (const [id, channel] of client.channels) {
+        if (id === "441596084033421323") {
+            channel.send("Estou aqui!");
+        }
+    }
+})
+    .catch(error => {
+    logger.error(error);
+});
 //# sourceMappingURL=index.js.map
